@@ -13,7 +13,7 @@ def Inngang():
     Inngang1()
     
 def Inngang1():
-        print("rød dør har et nøkkelhull, den blåe koster koster 25, og den grønne koster 15kr")
+        print("rød dør har et nøkkelhull, den blåe har også et nøkkelhull, og den grønne koster 15kr")
         en()
     
 def en():
@@ -23,11 +23,40 @@ def en():
         Inngang2()
 
 
+
+def ValgveddeA():
+    global penger
+    print("Jeg vedder 90 kroner på at jeg kan røre øyet mitt med tunga")
+    print("Du blir glad fordi du tror at du har fått pengene uansett, men så tar han ut glassøyet sitt, og tar det mot munnen sin")
+    penger -= 90
+    if penger < 1:
+        Endblakk()
+    print("du har nå", penger, "kroner igjen")
+    Inngang2()
+
+def ValgveddeB():
+    print("Det finner du bare ut hvis du sier ja")
+    valgvedde1 = input("A = Ja, B = Nei")
+    if valgvedde1 =="A":
+        ValgveddeA()
+    if valgvedde1 =="B":
+        ValgveddeC()
+
+def ValgveddeC():
+    print("Ditt tap")
+    Inngang2()
+
+
+
+
+
+
+
 def Inngang2():
     global penger, nøkkelblå, nøkkelrød
     asking = True
     while asking == True:
-        førstedør = input("A = Rød dør, B = Blå dør, C = Grønn dør -> ")
+        førstedør = input("A = Rød dør, B = Blå dør, C = Grønn dør, D = Gul dør -> ")
         if førstedør == "A":
             if nøkkelrød == 1:
                 nøkkelrød -= 1
@@ -47,10 +76,24 @@ def Inngang2():
                 en()        
         elif førstedør == "C":
             penger -= 15
+            if penger < 1:
+                Endblakk()
             print("du har nå", penger, "kroner igjen")
             print("inni rommet fant du en blå nøkkel")
             nøkkelblå += 1
             en()
+        elif førstedør == "D":
+            print("inni rommet med den gule døra er det en mann")
+            print("han spør deg om du har lyst til å vedde på noe")
+            valgvedde = input("A = Ja, B = på hva da?, C = Nei")
+            if valgvedde =="A":
+                ValgveddeA()
+            if valgvedde =="B":
+                ValgveddeB()
+            if valgvedde =="C":
+                ValgveddeC()
+                
+
 
             print("du har", penger, "kroner igjen")
             Grønn1()
